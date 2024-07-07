@@ -21,7 +21,7 @@ public class HungarianNotationCheck extends AbstractCheck {
             DetailAST identifierAST = ast.findFirstToken(TokenTypes.IDENT);
             String variableName = identifierAST.getText();
             if (variableName.startsWith(STR) || variableName.startsWith(S)) {
-                log(ast.getLineNo(), "string.variable.name.prefix", variableName);
+                log(ast.getLineNo(), "variable.name.prefix", variableName);
             }
         }
 
@@ -32,7 +32,7 @@ public class HungarianNotationCheck extends AbstractCheck {
             if (variableName.startsWith("int") ||
                     (variableName.startsWith("i") && variableName.length() > 1
                             && Character.isUpperCase(variableName.charAt(1)))) {
-                log(ast.getLineNo(), "string.variable.name.prefix", variableName);
+                log(ast.getLineNo(), "variable.name.prefix", variableName);
             }
         }
 
@@ -44,7 +44,7 @@ public class HungarianNotationCheck extends AbstractCheck {
                     (variableName.startsWith("f") &&
                             variableName.length() > 1 &&
                             Character.isUpperCase(variableName.charAt(1)))) {
-                log(ast.getLineNo(), "string.variable.name.prefix", variableName);
+                log(ast.getLineNo(), "variable.name.prefix", variableName);
             }
         }
         
@@ -56,7 +56,7 @@ public class HungarianNotationCheck extends AbstractCheck {
                     (variableName.startsWith("d") &&
                             variableName.length() > 1 &&
                             Character.isUpperCase(variableName.charAt(1)))) {
-                log(ast.getLineNo(), "string.variable.name.prefix", variableName);
+                log(ast.getLineNo(), "variable.name.prefix", variableName);
             }
         }
     }
