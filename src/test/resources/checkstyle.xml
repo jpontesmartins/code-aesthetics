@@ -8,5 +8,6 @@
   <module name="TreeWalker">
     <module name="com.myaesthetics.MethodBooleanNamesCheck" />
     <module name="com.myaesthetics.HungarianNotationCheck" />
+    <module name="com.myaesthetics.VerbsInInfinitiveCheck" />
   </module>
 </module>
