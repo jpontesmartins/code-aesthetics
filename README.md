@@ -16,7 +16,16 @@ my-aesthetics
 
 1. Copiar o arquivo `my-aesthetics-1.0-SNAPSHOT.jar` de dentro do target e colar na pasta raiz do projeto a ser validado.
 
-2. Adicionar no `POM.xml` do projeto a ser validado
+2. Adicionar no `POM.xml` do projeto a ser validado:
+
+
+No bloco de `<properties></properties>`
+  ```
+    <!-- CHECKSTYLE -->
+    <maven-checkstyle-plugin.version>3.4.0</maven-checkstyle-plugin.version>
+  ```
+
+No bloco de `<build>`
   ```
     ...
     <build>
