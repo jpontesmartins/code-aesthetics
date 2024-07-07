@@ -36,14 +36,6 @@
             <artifactId>checkstyle</artifactId>
             <version>10.17.0</version>
         </dependency>
-
-    <!-- https://mvnrepository.com/artifact/com.puppycrawl.tools/checkstyle -->
-    <!-- <dependency>
-      <groupId>com.puppycrawl.tools</groupId>
-      <artifactId>checkstyle</artifactId>
-      <version>10.17.0</version>
-    </dependency> -->
-
   </dependencies>
 
   <build>

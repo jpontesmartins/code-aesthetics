@@ -1,105 +1,101 @@
 my-aesthetics
 
+## Criação do My Aesthetics
 
-Comando para criação do projeto
-```
-$ mvn archetype:generate 
-  -DgroupId=com.myaesthetics
-  -DartifactId=my-aesthetics 
-  -DarchetypeArtifactId=maven-archetype-quickstart 
-  -DarchetypeVersion=1.4 
-  -DinteractiveMode=false
-```
+1. Rodar testes
+  ```
+    $ mvn test
+  ```
 
-Empacotar projeto (JAR)
-```
-$ mvn package
-```
+2. Gerar JAR
+  ```
+    $ mvn install 
+  ```
 
-Executar projeto
+## Uso do My Aesthetics
 
-```
-$ java -cp target/my-aesthetics-1.0-SNAPSHOT.jar com.myaesthetics.App
-```
+1. Copiar o arquivo `my-aesthetics-1.0-SNAPSHOT.jar` de dentro do target e colar na pasta raiz do projeto a ser validado.
 
-Dependência do Checkstyle
-```
-<!-- https://mvnrepository.com/artifact/com.puppycrawl.tools/checkstyle -->
-<dependency>
-    <groupId>com.puppycrawl.tools</groupId>
-    <artifactId>checkstyle</artifactId>
-    <version>10.17.0</version>
-</dependency>
-```
+2. Adicionar no `POM.xml` do projeto a ser validado
+  ```
+    ...
+    <build>
+      <pluginManagement>
+        <plugins>
+          ...
+          <!-- Incio do uso do Checkstyle + My Aesthetics -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>3.4.0</version>
+            <dependencies>
+              <!-- Checkstyle -->
+              <dependency>
+                <groupId>com.puppycrawl.tools</groupId>
+                <artifactId>checkstyle</artifactId>
+                <version>10.17.0</version>
+              </dependency>
 
-## Usar o My Aesthetics
+              <!-- My Aesthetics -->
+              <dependency>
+                <groupId>com.myaesthetics</groupId>
+                <artifactId>my-aesthetics</artifactId>
+                <version>1.0</version>
+                <scope>system</scope>
+                <systemPath>my-aesthetics-1.0-SNAPSHOT.jar</systemPath>
+              </dependency>
 
-Rodar testes
-```
-$ mvn test
-```
+            </dependencies>
 
-Gerar JAR
-```
-$ mvn install 
-```
+            <configuration>
+              <configLocation>src/main/resources/checkstyle.xml</configLocation>
+              <consoleOutput>true</consoleOutput>
+              <failsOnError>false</failsOnError>
+              <violationSeverity>warning</violationSeverity>
+              <logViolationCountToConsole>true</logViolationCountToConsole>
+            </configuration>
 
-Copiar o arquivo `my-aesthetics-1.0-SNAPSHOT.jar` de dentro do target e colar na pasta raiz do projeto a ser validado.
+            <executions>
+              <execution>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>check</goal>
+                  </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- Fim do uso do Checkstyle + My Aesthetics -->
 
-Adicionar no `POM.xml` do projeto a ser validado
-```
-...
-<build>
-  <pluginManagement>
-    <plugins>
-      ...
+        </plugins>
+      </pluginManagement>
+    </build>
+    ...
+  ```
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.4.0</version>
-        <dependencies>
-          <!-- Checkstyle -->
-          <dependency>
-            <groupId>com.puppycrawl.tools</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>9.3</version>
-          </dependency>
 
-          <!-- My Aesthetics -->
-          <dependency>
-            <groupId>com.myaesthetics</groupId>
-            <artifactId>my-aesthetics</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>my-aesthetics-1.0-SNAPSHOT.jar</systemPath>
-          </dependency>
+3. No `checkstyle.xml` do projeto, adicionar os Checks
+  ```
+    <?xml version="1.0" ?>
+    
+    <!DOCTYPE module PUBLIC
+      "-//Checkstyle//DTD Checkstyle Configuration 1.2//EN"
+      "https://checkstyle.org/dtds/configuration_1_2.dtd">
+    
+    <module name="Checker">
+      <module name="TreeWalker">
 
-        </dependencies>
+        <module name="com.myaesthetics.PrefixBooleanMethodsCheck" />
+        <module name="com.myaesthetics.HungarianNotationCheck" />
+        <module name="com.myaesthetics.VerbsInInfinitiveCheck" />
 
-        <configuration>
-          <configLocation>src/main/resources/checkstyle.xml</configLocation>
-          <consoleOutput>true</consoleOutput>
-          <failsOnError>false</failsOnError>
-          <violationSeverity>warning</violationSeverity>
-          <logViolationCountToConsole>true</logViolationCountToConsole>
-        </configuration>
+      </module>
+    </module>
+  ```
 
-        <executions>
-          <execution>
-              <phase>validate</phase>
-              <goals>
-                <goal>check</goal>
-              </goals>
-          </execution>
-        </executions>
-
-      </plugin>
-    </plugins>
-  </pluginManagement>
-</build>
-...
-```
+4. No projeto a ser validado, rodar o checkstyle:
+  ```
+    $ mvn checkstyle:check
+  ```
 
 
 
