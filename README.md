@@ -1,4 +1,13 @@
 my-aesthetics
+---
+Dependência para usar junto com o `checkstyle` plugin para validar as nomenclaturas do código
+
+| Regra                                             | Classe de Check           | Exemplo                                  |
+| ------------------------------------------------- | ------------------------- | ---------------------------------------- |
+| Métodos booleanos devem iniciar com `has` ou `is` | PrefixBooleanMethodsCheck | `isActive` ou `hasItems`                 |
+| Não usar notação húngara nas variáveis            | HungarianNotationCheck    | `nome` em vez de `strNome`               |
+| Verbos devem estar no infinitivo                  | VerbsInInfinitiveCheck    | `inserirPessoa` em vez de `inserePessoa` |
+
 
 ## Criação do My Aesthetics
 
