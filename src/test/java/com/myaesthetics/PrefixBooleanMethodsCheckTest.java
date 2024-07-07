@@ -67,7 +67,7 @@ public class PrefixBooleanMethodsCheckTest {
     }
 
     @Test
-    public void testBooleanMethodNames() throws Exception {
+    public void shouldValidateBooleanMethodsWithPrefixIsOrHas() throws Exception {
         File file = new File("src/test/java/com/myaesthetics/examples/ExampleForBooleanMethods.java");
         checker.process(List.of(file));
         String expectedMessageCheck = "O metodo 'check' retorna boolean e deve comecar com 'is' ou 'has'.";

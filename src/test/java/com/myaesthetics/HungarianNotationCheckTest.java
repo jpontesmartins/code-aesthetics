@@ -66,7 +66,7 @@ public class HungarianNotationCheckTest {
     }
 
     @Test
-    public void shouldReturnHungarianNotation_forStrings() throws Exception {
+    public void shouldReturnHungarianNotationForVariables() throws Exception {
         File file = new File("src/test/java/com/myaesthetics/examples/ExampleForHungarianNotation.java");
         checker.process(List.of(file));
         

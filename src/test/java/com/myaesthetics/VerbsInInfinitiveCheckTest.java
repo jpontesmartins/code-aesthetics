@@ -67,7 +67,7 @@ public class VerbsInInfinitiveCheckTest {
     }
 
     @Test
-    public void testBooleanMethodNames() throws Exception {
+    public void shouldValidateMethodsWithVerbsInInfinitive() throws Exception {
         File file = new File("src/test/java/com/myaesthetics/examples/ExampleForVerbsInInfinitive.java");
         checker.process(List.of(file));
         String expectedMessage = "O metodo '%s' deve conter um verbo no infinitivo (terminado em ar, er, ir).";
