@@ -7,6 +7,7 @@ Dependência para usar junto com o `checkstyle` plugin para validar as nomenclat
 | Métodos booleanos devem iniciar com `has` ou `is` | PrefixBooleanMethodsCheck | `isActive` ou `hasItems`                 |
 | Não usar notação húngara nas variáveis            | HungarianNotationCheck    | `nome` em vez de `strNome`               |
 | Verbos devem estar no infinitivo                  | VerbsInInfinitiveCheck    | `inserirPessoa` em vez de `inserePessoa` |
+| Valida existência de `@Annotations` em métodos públicos | PublicMethodAnnotationsCheck | | 
 
 
 ## Criação do My Aesthetics

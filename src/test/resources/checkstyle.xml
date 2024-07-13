@@ -9,5 +9,11 @@
     <module name="com.myaesthetics.PrefixBooleanMethodsCheck" />
     <module name="com.myaesthetics.HungarianNotationCheck" />
     <module name="com.myaesthetics.VerbsInInfinitiveCheck" />
+
+    <module name="com.myaesthetics.PublicMethodAnnotationsCheck">
+      <property name="classSuffixes" value="Serice,Srvc"/>
+      <property name="requiredAnnotations" value="Deprecated,SuppressWarnings"/>
+    </module>
+
   </module>
 </module>
