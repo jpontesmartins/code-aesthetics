@@ -1,10 +1,9 @@
 package com.myaesthetics;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class HungarianNotationCheck extends AbstractCheck {
+public class HungarianNotationCheck extends BaseCheck {
 
     private static final String STRING_TYPE = "String";
     private static final String INT_TYPE = "int";
@@ -13,18 +12,13 @@ public class HungarianNotationCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        DetailAST typeAST = ast.findFirstToken(TokenTypes.TYPE);
+        DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
 
-        // String
-        if (typeAST != null && STRING_TYPE.equals(typeAST.getFirstChild().getText())) {
-            // Get the variable name
-            DetailAST identifierAST = ast.findFirstToken(TokenTypes.IDENT);
-            String variableName = identifierAST.getText();
-            if (variableName.startsWith(STR) || variableName.startsWith(S)) {
-                log(ast.getLineNo(), "variable.name.prefix", variableName);
-            }
-        }
+        checkVariableNameForString(ast, type);
+        checkVariableNameForNumbers(ast, type);
+    }
 
+    private void checkVariableNameForNumbers(DetailAST ast, DetailAST typeAST) {
         // int
         if (typeAST != null && INT_TYPE.equals(typeAST.getFirstChild().getText())) {
             DetailAST identifierAST = ast.findFirstToken(TokenTypes.IDENT);
@@ -61,18 +55,20 @@ public class HungarianNotationCheck extends AbstractCheck {
         }
     }
 
+    private void checkVariableNameForString(DetailAST ast, DetailAST typeAST) {
+        if (typeAST != null && STRING_TYPE.equals(typeAST.getFirstChild().getText())) {
+
+            DetailAST identifierAST = ast.findFirstToken(TokenTypes.IDENT);
+            String variableName = identifierAST.getText();
+            if (variableName.startsWith(STR) || variableName.startsWith(S)) {
+                log(ast.getLineNo(), "variable.name.prefix", variableName);
+            }
+        }
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] { TokenTypes.VARIABLE_DEF };
     }
-
-    @Override
-    public int[] getAcceptableTokens() {
-        return getDefaultTokens();
-    }
-
-    @Override
-    public int[] getRequiredTokens() {
-        return new int[0];
-    }
+    
 }

@@ -1,10 +1,9 @@
 package com.myaesthetics;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class PrefixBooleanMethodsCheck extends AbstractCheck {
+public class PrefixBooleanMethodsCheck extends BaseCheck {
 
     private static final String MESSAGE_PROPERTY_BOOLEAN_METHOD_NAME = "boolean.method.name";
     private static final String BOOLEAN = "boolean";
@@ -13,18 +12,13 @@ public class PrefixBooleanMethodsCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        DetailAST typeAST = ast.findFirstToken(TokenTypes.TYPE);
-        if (typeAST == null || typeAST.getFirstChild() == null) {
+        DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+        if (type == null || type.getFirstChild() == null) {
             return;
         }
+        if (BOOLEAN.equals(type.getFirstChild().getText())) {
+            String methodName = ast.findFirstToken(TokenTypes.IDENT).getText();
 
-        // boolean
-        String returnType = typeAST.getFirstChild().getText();
-        if (BOOLEAN.equals(returnType)) {
-            DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
-            String methodName = nameAST.getText();
-
-            // is ou has
             if (!(methodName.startsWith(IS) || methodName.startsWith(HAS))) {
                 log(ast.getLineNo(), MESSAGE_PROPERTY_BOOLEAN_METHOD_NAME, methodName);
             }
@@ -36,13 +30,4 @@ public class PrefixBooleanMethodsCheck extends AbstractCheck {
         return new int[] { TokenTypes.METHOD_DEF };
     }
 
-    @Override
-    public int[] getAcceptableTokens() {
-        return getDefaultTokens();
-    }
-
-    @Override
-    public int[] getRequiredTokens() {
-        return new int[0];
-    }
 }
