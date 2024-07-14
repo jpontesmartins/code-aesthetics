@@ -9,13 +9,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class VerbsInInfinitiveCheck extends BaseCheck {
 
     @Override
-    public void visitToken(DetailAST ast) {
-        DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+    public void visitToken(DetailAST node) {
+        DetailAST type = node.findFirstToken(TokenTypes.TYPE);
         if (type == null || type.getFirstChild() == null) {
             return;
         }
         
-        String methodName = ast.findFirstToken(TokenTypes.IDENT).getText();
+        String methodName = node.findFirstToken(TokenTypes.IDENT).getText();
 
         String regex = "[a-z]+(ar|er|ir)+[A-Z]([a-z]|[A-Z])*";
         Pattern pattern = Pattern.compile(regex);
@@ -23,7 +23,7 @@ public class VerbsInInfinitiveCheck extends BaseCheck {
         boolean validName = matcher.matches();
 
         if (!validName) {
-            log(ast.getLineNo(), "infinitive.verbs.methods", methodName);
+            log(node.getLineNo(), "infinitive.verbs.methods", methodName);
         }
     }
 
