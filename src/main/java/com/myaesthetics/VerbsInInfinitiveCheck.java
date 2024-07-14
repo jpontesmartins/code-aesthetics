@@ -8,6 +8,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class VerbsInInfinitiveCheck extends BaseCheck {
 
+    private static final String INFINITIVE_VERBS_METHODS = "infinitive.verbs.methods";
+
     @Override
     public void visitToken(DetailAST node) {
         DetailAST type = node.findFirstToken(TokenTypes.TYPE);
@@ -23,7 +25,7 @@ public class VerbsInInfinitiveCheck extends BaseCheck {
         boolean validName = matcher.matches();
 
         if (!validName) {
-            log(node.getLineNo(), "infinitive.verbs.methods", methodName);
+            log(node.getLineNo(), INFINITIVE_VERBS_METHODS, methodName);
         }
     }
 

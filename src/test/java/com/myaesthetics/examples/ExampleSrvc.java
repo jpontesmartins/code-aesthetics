@@ -1,5 +1,7 @@
 package com.myaesthetics.examples;
 
+@SuppressWarnings(value = { "unused" })
+
 public class ExampleSrvc {
 
     @Deprecated
@@ -8,4 +10,11 @@ public class ExampleSrvc {
         return "";
     }
 
+    @SuppressWarnings(value = { "" })
+    public String algumMetodoOutro(int id) {
+        return "";
+    }
+
+    private void nadaAqui() {
+    }
 }

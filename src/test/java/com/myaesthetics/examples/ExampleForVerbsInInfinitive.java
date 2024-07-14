@@ -2,6 +2,7 @@ package com.myaesthetics.examples;
 
 public class ExampleForVerbsInInfinitive {
 
+    public String nome;
 
     // ar
     public void clonarObjeto() { }
@@ -27,6 +28,7 @@ public class ExampleForVerbsInInfinitive {
     public int inserirRegistroOutro() { return 0; }
 
     public int insereRegistroOutro() { return 0; }
+
 
 
 }

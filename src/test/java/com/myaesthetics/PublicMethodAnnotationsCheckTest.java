@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PublicMethodAnnotationsCheckTest {
 
+    private static final String PATH_TO_EXAMPLE = "src/test/java/com/myaesthetics/examples/";
     private Checker checker;
     private List<String> messages;
 
@@ -68,11 +69,30 @@ public class PublicMethodAnnotationsCheckTest {
     }
 
     @Test
-    public void testPublicMethodAnnotations() throws Exception {
-        File file = new File("src/test/java/com/myaesthetics/examples/ExampleAbcdService.java");
+    public void shouldTest_LackOfAnnotationsInPublicMethods() throws Exception {
+        File file = new File(PATH_TO_EXAMPLE + "ExampleService.java");
         checker.process(List.of(file));
 
+        assertEquals(1, messages.size());
         assertEquals("o metodo 'algumMetodoOutro' requer a annotation 'Deprecated'", messages.get(0));
     }
+
+    @Test
+    public void shouldTest_SuffixClassNames() throws Exception {
+        File file = new File(PATH_TO_EXAMPLE + "ExampleSrvc.java");
+        checker.process(List.of(file));
+
+        assertEquals(1, messages.size());
+        assertEquals("o metodo 'algumMetodoOutro' requer a annotation 'Deprecated'", messages.get(0));
+    }
+
+    @Test
+    public void shouldTest_SuffixClassName() throws Exception {
+        File file = new File(PATH_TO_EXAMPLE + "ExampleRepository.java");
+        checker.process(List.of(file));
+
+        assertEquals(0, messages.size());
+    }
+
 
 }
