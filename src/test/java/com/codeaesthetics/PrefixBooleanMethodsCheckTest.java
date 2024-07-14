@@ -69,11 +69,12 @@ public class PrefixBooleanMethodsCheckTest {
 
     @Test
     public void shouldValidateBooleanMethodsWithPrefixIsOrHas() throws Exception {
-        File file = new File(PATH_TO_EXAMPLES + "ExampleForBooleanMethods.java");
+        File file = new File(PATH_TO_EXAMPLES + "ExampleForPrefixBooleanMethods.java");
         checker.process(List.of(file));
         String expectedMessageCheck = "O metodo 'check' retorna boolean e deve comecar com 'is' ou 'has'.";
         String expectedMessageVerify = "O metodo 'verify' retorna boolean e deve comecar com 'is' ou 'has'.";
 
+        assertEquals(2, messages.size());
         assertEquals(expectedMessageCheck, messages.get(0));
         assertEquals(expectedMessageVerify, messages.get(1));
     }

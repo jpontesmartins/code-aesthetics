@@ -2,13 +2,95 @@ code-aesthetics
 ---
 Dependência para usar junto com o `checkstyle` plugin para validar as nomenclaturas do código
 
-| Regra                                             | Classe de Check           | Exemplo                                  |
-| ------------------------------------------------- | ------------------------- | ---------------------------------------- |
-| Métodos booleanos devem iniciar com `has` ou `is` | PrefixBooleanMethodsCheck | `isActive` ou `hasItems`                 |
-| Não usar notação húngara nas variáveis            | HungarianNotationCheck    | `nome` em vez de `strNome`               |
-| Verbos devem estar no infinitivo                  | VerbsInInfinitiveCheck    | `inserirPessoa` em vez de `inserePessoa` |
-| Valida existência de `@Annotations` em métodos públicos | PublicMethodAnnotationsCheck | | 
 
+## Exemplos
+
+Verbos nos Infinitivo (AR, ER, IR)
+  ```
+    public class ExampleForVerbsInInfinitive {
+      public void clonarObjeto() { } // ok
+      public void clonaObjeto() { } // nao ok
+      public void inserirRegistro() { } // ok
+      public void insereRegistro() { } // nao ok
+      public void removerRegistro() { } //ok
+      public void removeRegistro() { } // nao ok
+      public String clonarRegistroOutro() { return ""; } // ok
+      public String clonaRegistroOutro() { return ""; } // nao ok
+      public int inserirRegistroOutro() { return 0; }  // ok
+      public int insereRegistroOutro() { return 0; } // nao ok
+      public String nome; // ok
+    }
+  ```
+
+checkstyle.xml
+  ```
+    <module name="com.codeaesthetics.VerbsInInfinitiveCheck" />
+  ```
+
+
+Métodos booleanos devem iniciar com `has ` ou `is`
+  ```
+    public class ExampleForPrefixBooleanMethods {
+      public boolean isActive() { return true; } //ok 
+      public boolean hasSomething() { return true; } // ok
+      public boolean check() { return true; } // nao ok
+      public boolean verify() { return true; } // nao ok
+    }
+  ```
+checkstyle.xml
+  ```
+    <module name="com.codeaesthetics.PrefixBooleanMethodsCheck" />
+  ```
+
+Não usar notação húngara nas variáveis
+  ```
+    public class ExampleForHungarianNotation {
+      String strNome = ""; //nao ok
+      String sNome = ""; //nao ok
+      String nome = ""; // ok
+      int iContador = 0; //nao ok
+      int intContador = 0; //nao ok
+      int inicio = 0; //nao ok
+      int iAlgumaCoisa = 0; //nao ok
+      int intAlgumaCoisa = 0; //nao ok
+      float fVar = 0; //nao ok
+      double dVar = 0.0; //nao ok
+      float var1 = 0; // ok
+      double var2 = 0.0; // ok
+    }
+  ```
+
+checkstyle.xml
+  ```
+    <module name="com.codeaesthetics.HungarianNotationCheck" />
+  ```
+
+Valida a existência de `@Annotations` em métodos públicos em classes com determinados sufixos
+  ```
+    public class ExampleService {
+      @Deprecated
+      @SuppressWarnings(value = { "unused" })
+      public String algumMetodo(int id) { return ""; } // ok
+
+      @SuppressWarnings(value = { "" }) 
+      public String algumMetodoOutro(int id) { return ""; } // nao ok
+
+      private void nadaAqui() { } // ok
+    }
+
+    public class ExampleOutro {
+      public String algumMetodoOutro(int id) { return ""; } // ok
+    }
+  ```
+checkstyle.xml
+  ```
+    <module name="com.codeaesthetics.PublicMethodAnnotationsCheck">
+      <property name="classSuffixes" value="Serice,Srvc"/>
+      <property name="requiredAnnotations" value="Deprecated,SuppressWarnings"/>
+    </module>
+  ```
+
+---
 
 ## Modificação
 
@@ -111,6 +193,11 @@ No bloco de `<build>`
         <module name="com.codeaesthetics.PrefixBooleanMethodsCheck" />
         <module name="com.codeaesthetics.HungarianNotationCheck" />
         <module name="com.codeaesthetics.VerbsInInfinitiveCheck" />
+
+        <module name="com.codeaesthetics.PublicMethodAnnotationsCheck">
+          <property name="classSuffixes" value="Serice,Srvc"/>
+          <property name="requiredAnnotations" value="Deprecated,SuppressWarnings"/>
+        </module>
 
       </module>
     </module>

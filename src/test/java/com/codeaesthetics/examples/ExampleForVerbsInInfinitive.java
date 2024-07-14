@@ -1,34 +1,21 @@
 package com.codeaesthetics.examples;
 
 public class ExampleForVerbsInInfinitive {
-
-    public String nome;
-
     // ar
-    public void clonarObjeto() { }
-
-    public void clonaObjeto() { }
-
+    public void clonarObjeto() { } // ok
+    public void clonaObjeto() { } // nao ok
     // ir
-    public void inserirRegistro() { }
-
-    public void insereRegistro() { }
-
+    public void inserirRegistro() { } // ok
+    public void insereRegistro() { } // nao ok
     // er
-    public void removerRegistro() { }
-    
-    public void removeRegistro() { }
-
+    public void removerRegistro() { } //ok
+    public void removeRegistro() { } // nao ok
     // ar
-    public String clonaRegistroOutro() { return ""; }
-    
-    public String clonarRegistroOutro() { return ""; }
-
+    public String clonarRegistroOutro() { return ""; } // ok
+    public String clonaRegistroOutro() { return ""; } // nao ok
     // ir
-    public int inserirRegistroOutro() { return 0; }
+    public int inserirRegistroOutro() { return 0; }  // ok
+    public int insereRegistroOutro() { return 0; } // nao ok
 
-    public int insereRegistroOutro() { return 0; }
-
-
-
+    public String nome; // ok
 }

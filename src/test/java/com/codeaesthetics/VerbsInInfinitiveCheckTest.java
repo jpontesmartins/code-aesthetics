@@ -79,10 +79,10 @@ public class VerbsInInfinitiveCheckTest {
         String expectedMessageAR2 = String.format(expectedMessage, "clonaRegistroOutro");
         String expectedMessageIR2 = String.format(expectedMessage, "insereRegistroOutro");
 
+        assertEquals(5, messages.size());
         assertEquals(expectedMessageAR, messages.get(0));
         assertEquals(expectedMessageER, messages.get(1));
         assertEquals(expectedMessageIR, messages.get(2));
-
         assertEquals(expectedMessageAR2, messages.get(3));
         assertEquals(expectedMessageIR2, messages.get(4));
 
