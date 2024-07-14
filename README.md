@@ -10,7 +10,7 @@ Dependência para usar junto com o `checkstyle` plugin para validar as nomenclat
 | Valida existência de `@Annotations` em métodos públicos | PublicMethodAnnotationsCheck | | 
 
 
-## Alteração
+## Modificação
 
 1. Clonar o projeto
   ```
@@ -27,7 +27,7 @@ Dependência para usar junto com o `checkstyle` plugin para validar as nomenclat
     $ mvn install 
   ```
 
-## Uso do My Aesthetics
+## Uso
 
 1. Copiar o arquivo `code-aesthetics-1.0-SNAPSHOT.jar` de dentro do target e colar na pasta raiz do projeto a ser validado.
 
@@ -47,20 +47,20 @@ No bloco de `<build>`
       <pluginManagement>
         <plugins>
           ...
-          <!-- Incio do uso do Checkstyle + My Aesthetics -->
+          <!-- incio do uso do checkstyle + code aesthetics -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-checkstyle-plugin</artifactId>
             <version>3.4.0</version>
             <dependencies>
-              <!-- Checkstyle -->
+              <!-- checkstyle -->
               <dependency>
                 <groupId>com.puppycrawl.tools</groupId>
                 <artifactId>checkstyle</artifactId>
                 <version>10.17.0</version>
               </dependency>
 
-              <!-- My Aesthetics -->
+              <!-- code esthetics -->
               <dependency>
                 <groupId>com.codeaesthetics</groupId>
                 <artifactId>code-aesthetics</artifactId>
@@ -88,7 +88,7 @@ No bloco de `<build>`
               </execution>
             </executions>
           </plugin>
-          <!-- Fim do uso do Checkstyle + My Aesthetics -->
+          <!-- fim do uso do checkstyle + code aesthetics -->
 
         </plugins>
       </pluginManagement>
