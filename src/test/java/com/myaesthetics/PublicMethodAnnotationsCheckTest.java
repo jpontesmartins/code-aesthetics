@@ -73,7 +73,6 @@ public class PublicMethodAnnotationsCheckTest {
         checker.process(List.of(file));
 
         assertEquals("o metodo 'algumMetodoOutro' requer a annotation 'Deprecated'", messages.get(0));
-
     }
 
 }
