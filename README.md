@@ -90,31 +90,13 @@ checkstyle.xml
     </module>
   ```
 
----
 
-## Modificação
-
-1. Clonar o projeto
-  ```
-    $ git clone https://github.com/jpontesmartins/code-aesthetics.git
-  ```
-
-2. Rodar testes
-  ```
-    $ mvn test
-  ```
-
-3. Gerar JAR
-  ```
-    $ mvn install 
-  ```
 
 ## Uso
 
-1. Copiar o arquivo `code-aesthetics-1.0-SNAPSHOT.jar` de dentro do target e colar na pasta raiz do projeto a ser validado.
+Copiar o arquivo `code-aesthetics-1.0-SNAPSHOT.jar` de dentro do target e colar na pasta raiz do projeto a ser validado.
 
-2. Adicionar no `POM.xml` do projeto a ser validado:
-
+Adicionar no `POM.xml` do projeto a ser validado:
 
 No bloco de `<properties></properties>`
   ```
@@ -179,7 +161,7 @@ No bloco de `<build>`
   ```
 
 
-3. No `checkstyle.xml` do projeto, adicionar os Checks
+No `checkstyle.xml` do projeto, adicionar os Checks
   ```
     <?xml version="1.0" ?>
     
@@ -203,10 +185,26 @@ No bloco de `<build>`
     </module>
   ```
 
-4. No projeto a ser validado, rodar o checkstyle:
+1. No projeto a ser validado, rodar o checkstyle:
   ```
     $ mvn checkstyle:check
   ```
 
+---
 
+## Modificação
 
+Clonar o projeto
+  ```
+    $ git clone https://github.com/jpontesmartins/code-aesthetics.git
+  ```
+
+Rodar testes
+  ```
+    $ mvn test
+  ```
+
+Gerar JAR
+  ```
+    $ mvn install 
+  ```

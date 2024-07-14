@@ -96,7 +96,6 @@ public class HungarianNotationCheckTest {
         assertEquals(expectedMessage_fVar, messages.get(6));
         assertEquals(expectedMessage_dVar, messages.get(7));
 
-
     }
 
 }
