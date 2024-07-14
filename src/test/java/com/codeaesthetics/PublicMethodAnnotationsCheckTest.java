@@ -1,4 +1,4 @@
-package com.myaesthetics;
+package com.codeaesthetics;
 
 import com.puppycrawl.tools.checkstyle.api.*;
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PublicMethodAnnotationsCheckTest {
 
-    private static final String PATH_TO_EXAMPLE = "src/test/java/com/myaesthetics/examples/";
+    private static final String PATH_TO_EXAMPLE = "src/test/java/com/codeaesthetics/examples/";
     private Checker checker;
     private List<String> messages;
 

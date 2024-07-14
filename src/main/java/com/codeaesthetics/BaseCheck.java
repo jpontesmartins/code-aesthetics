@@ -1,4 +1,4 @@
-package com.myaesthetics;
+package com.codeaesthetics;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 

@@ -1,4 +1,4 @@
-package com.myaesthetics;
+package com.codeaesthetics;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PrefixBooleanMethodsCheckTest {
 
+    private static final String PATH_TO_EXAMPLES = "src/test/java/com/codeaesthetics/examples/";
     private Checker checker;
     private List<String> messages;
 
@@ -68,7 +69,7 @@ public class PrefixBooleanMethodsCheckTest {
 
     @Test
     public void shouldValidateBooleanMethodsWithPrefixIsOrHas() throws Exception {
-        File file = new File("src/test/java/com/myaesthetics/examples/ExampleForBooleanMethods.java");
+        File file = new File(PATH_TO_EXAMPLES + "ExampleForBooleanMethods.java");
         checker.process(List.of(file));
         String expectedMessageCheck = "O metodo 'check' retorna boolean e deve comecar com 'is' ou 'has'.";
         String expectedMessageVerify = "O metodo 'verify' retorna boolean e deve comecar com 'is' ou 'has'.";

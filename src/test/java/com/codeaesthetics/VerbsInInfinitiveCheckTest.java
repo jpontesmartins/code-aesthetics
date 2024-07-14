@@ -1,4 +1,4 @@
-package com.myaesthetics;
+package com.codeaesthetics;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VerbsInInfinitiveCheckTest {
 
+    private static final String PATH_TO_EXAMPLES = "src/test/java/com/codeaesthetics/examples/";
     private Checker checker;
     private List<String> messages;
 
@@ -68,7 +69,7 @@ public class VerbsInInfinitiveCheckTest {
 
     @Test
     public void shouldValidateMethodsWithVerbsInInfinitive() throws Exception {
-        File file = new File("src/test/java/com/myaesthetics/examples/ExampleForVerbsInInfinitive.java");
+        File file = new File(PATH_TO_EXAMPLES + "ExampleForVerbsInInfinitive.java");
         checker.process(List.of(file));
         String expectedMessage = "O metodo '%s' deve conter um verbo no infinitivo (terminado em ar, er, ir).";
 

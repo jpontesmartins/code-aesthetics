@@ -6,11 +6,11 @@
  
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="com.myaesthetics.PrefixBooleanMethodsCheck" />
-    <module name="com.myaesthetics.HungarianNotationCheck" />
-    <module name="com.myaesthetics.VerbsInInfinitiveCheck" />
+    <module name="com.codeaesthetics.PrefixBooleanMethodsCheck" />
+    <module name="com.codeaesthetics.HungarianNotationCheck" />
+    <module name="com.codeaesthetics.VerbsInInfinitiveCheck" />
 
-    <module name="com.myaesthetics.PublicMethodAnnotationsCheck">
+    <module name="com.codeaesthetics.PublicMethodAnnotationsCheck">
       <property name="classSuffixes" value="Serice,Srvc"/>
       <property name="requiredAnnotations" value="Deprecated,SuppressWarnings"/>
     </module>

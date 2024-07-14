@@ -1,7 +1,8 @@
-package com.myaesthetics.examples;
+package com.codeaesthetics.examples;
 
 @SuppressWarnings(value = { "unused" })
-public class ExampleService {
+
+public class ExampleSrvc {
 
     @Deprecated
     @SuppressWarnings(value = { "" })

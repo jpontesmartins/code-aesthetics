@@ -1,4 +1,4 @@
-package com.myaesthetics.examples;
+package com.codeaesthetics.examples;
 
 public class ExampleForVerbsInInfinitive {
 

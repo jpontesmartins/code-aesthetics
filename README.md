@@ -1,4 +1,4 @@
-my-aesthetics
+code-aesthetics
 ---
 Dependência para usar junto com o `checkstyle` plugin para validar as nomenclaturas do código
 
@@ -10,21 +10,26 @@ Dependência para usar junto com o `checkstyle` plugin para validar as nomenclat
 | Valida existência de `@Annotations` em métodos públicos | PublicMethodAnnotationsCheck | | 
 
 
-## Criação do My Aesthetics
+## Alteração
 
-1. Rodar testes
+1. Clonar o projeto
+  ```
+    $ git clone https://github.com/jpontesmartins/code-aesthetics.git
+  ```
+
+2. Rodar testes
   ```
     $ mvn test
   ```
 
-2. Gerar JAR
+3. Gerar JAR
   ```
     $ mvn install 
   ```
 
 ## Uso do My Aesthetics
 
-1. Copiar o arquivo `my-aesthetics-1.0-SNAPSHOT.jar` de dentro do target e colar na pasta raiz do projeto a ser validado.
+1. Copiar o arquivo `code-aesthetics-1.0-SNAPSHOT.jar` de dentro do target e colar na pasta raiz do projeto a ser validado.
 
 2. Adicionar no `POM.xml` do projeto a ser validado:
 
@@ -57,8 +62,8 @@ No bloco de `<build>`
 
               <!-- My Aesthetics -->
               <dependency>
-                <groupId>com.myaesthetics</groupId>
-                <artifactId>my-aesthetics</artifactId>
+                <groupId>com.codeaesthetics</groupId>
+                <artifactId>code-aesthetics</artifactId>
                 <version>1.0</version>
                 <scope>system</scope>
                 <systemPath>my-aesthetics-1.0-SNAPSHOT.jar</systemPath>
@@ -103,9 +108,9 @@ No bloco de `<build>`
     <module name="Checker">
       <module name="TreeWalker">
 
-        <module name="com.myaesthetics.PrefixBooleanMethodsCheck" />
-        <module name="com.myaesthetics.HungarianNotationCheck" />
-        <module name="com.myaesthetics.VerbsInInfinitiveCheck" />
+        <module name="com.codeaesthetics.PrefixBooleanMethodsCheck" />
+        <module name="com.codeaesthetics.HungarianNotationCheck" />
+        <module name="com.codeaesthetics.VerbsInInfinitiveCheck" />
 
       </module>
     </module>

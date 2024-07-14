@@ -4,11 +4,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.myaesthetics</groupId>
-  <artifactId>my-aesthetics</artifactId>
+  <groupId>com.codeaesthetics</groupId>
+  <artifactId>code-aesthetics</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>my-aesthetics</name>
+  <name>code-aesthetics</name>
   <url>http://www.example.com</url>
 
   <properties>

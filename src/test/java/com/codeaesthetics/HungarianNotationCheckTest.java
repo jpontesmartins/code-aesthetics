@@ -1,4 +1,4 @@
-package com.myaesthetics;
+package com.codeaesthetics;
 
 import com.puppycrawl.tools.checkstyle.api.*;
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HungarianNotationCheckTest {
 
+    private static final String PATH_TO_EXAMPLES = "src/test/java/com/codeaesthetics/examples/";
     private Checker checker;
     private List<String> messages;
 
@@ -67,7 +68,7 @@ public class HungarianNotationCheckTest {
 
     @Test
     public void shouldReturnHungarianNotationForVariables() throws Exception {
-        File file = new File("src/test/java/com/myaesthetics/examples/ExampleForHungarianNotation.java");
+        File file = new File(PATH_TO_EXAMPLES + "ExampleForHungarianNotation.java");
         checker.process(List.of(file));
         
         // String
