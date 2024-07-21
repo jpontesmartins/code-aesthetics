@@ -10,7 +10,11 @@
     <module name="com.codeaesthetics.PrefixBooleanMethodsCheck" />
     <module name="com.codeaesthetics.HungarianNotationCheck" />
     <module name="com.codeaesthetics.VerbsInInfinitiveCheck" />
-    <module name="com.codeaesthetics.MethodsNamesInTestsCheck" />
+    <module name="com.codeaesthetics.MethodsNamesInTestsCheck">
+      <property name="padroesIniciais" value="shouldReturn, deveRetornar"/>
+      <property name="padroesFInais" value="_when, _quando"/>
+    </module>
+    
     <module name="com.codeaesthetics.PublicMethodAnnotationsCheck">
       <property name="classSuffixes" value="Serice,Srvc"/>
       <property name="requiredAnnotations" value="Deprecated,SuppressWarnings"/>

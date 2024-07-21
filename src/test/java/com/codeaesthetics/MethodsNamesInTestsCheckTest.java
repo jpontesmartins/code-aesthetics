@@ -32,7 +32,9 @@ public class MethodsNamesInTestsCheckTest {
         DefaultConfiguration treeWalkerConfig = new DefaultConfiguration("TreeWalker");
         config.addChild(treeWalkerConfig);
 
-        DefaultConfiguration checkConfig = new DefaultConfiguration(MethodsNamesInTestsCheck.class.getCanonicalName());
+        DefaultConfiguration checkConfig = new DefaultConfiguration(MethodNameInTestsCheck.class.getCanonicalName());
+        checkConfig.addProperty("padroesIniciais", "shouldReturn, deveRetornar");
+        checkConfig.addProperty("padroesFinais", "_quando, _when");
         treeWalkerConfig.addChild(checkConfig);
 
         checker.configure(config);
