@@ -17,7 +17,6 @@ import com.puppycrawl.tools.checkstyle.api.AuditListener;
 
 public class MethodsNamesInTestsCheckTest {
   
-  
     private static final String PATH_TO_EXAMPLES = "src/test/java/com/codeaesthetics/examples/";
     private Checker checker;
     private List<String> messages;
@@ -69,15 +68,37 @@ public class MethodsNamesInTestsCheckTest {
     }
 
     @Test
-    public void shouldReturnMethodsNames() throws Exception {
-        File file = new File(PATH_TO_EXAMPLES + "ExampleForMethodsNamesInTests.java");
+    public void shouldReturn_errorOfDifferentListSizeOfErrors() throws Exception {
+        File file = new File(PATH_TO_EXAMPLES + "ExampleForMethodsNamesInTestsTest.java");
+        checker.process(List.of(file));
+
+        assertEquals(3, messages.size());
+    }
+
+    @Test
+    public void shouldReturn_errorOfJustOneUnderline() throws Exception {
+        File file = new File(PATH_TO_EXAMPLES + "ExampleForMethodsNamesInTestsTest.java");
         checker.process(List.of(file));
         
         String expectedMessage = "O metodo '%s' deve estar de acordo com a nomenclatura para testes";
-
-        assertEquals(2, messages.size());
         assertEquals(String.format(expectedMessage, "shouldReturn_mensagemErroquandoSucesso"), messages.get(0));
-        assertEquals(String.format(expectedMessage, "deveRetornarMensagemOkQuandoStatus200"), messages.get(1));
+    }
 
+    @Test
+    public void shouldReturn_errorOfNoUnderline() throws Exception {
+        File file = new File(PATH_TO_EXAMPLES + "ExampleForMethodsNamesInTestsTest.java");
+        checker.process(List.of(file));
+        
+        String expectedMessage = "O metodo '%s' deve estar de acordo com a nomenclatura para testes";
+        assertEquals(String.format(expectedMessage, "deveRetornarMensagemOkQuandoStatus200"), messages.get(1));
+    }
+
+    @Test
+    public void shouldReturn_errorOfTooManyUnderlines() throws Exception {
+        File file = new File(PATH_TO_EXAMPLES + "ExampleForMethodsNamesInTestsTest.java");
+        checker.process(List.of(file));
+        
+        String expectedMessage = "O metodo '%s' deve ter o numero correto de separadores _";
+        assertEquals(String.format(expectedMessage, "deveRetornar_mensagemOk_quandoAutorizado_200"), messages.get(2));
     }
 }

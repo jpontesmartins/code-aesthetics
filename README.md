@@ -5,6 +5,26 @@ Dependência para usar junto com o `checkstyle` plugin para validar as nomenclat
 
 ## Exemplos
 
+Padrão de nomes de métodos nas classes de teste
+  ```
+    public class ExampleForMethodsNamesInTests {
+      void shouldReturn_mensagemErro_quandoParametroInvalido() { }  // ok
+      void salvar_deveRetornarMensagemErro_quandoParametroInvalido() { } // ok
+      void shouldReturn_mensagemOk_quandoSucesso() { } // ok
+      void shouldReturn_mensagemErroquandoSucesso() { } // nao-ok
+      void deveRetornar_mensagemOk_quando200() { } // ok
+      void salvarEntidade_deveRetornarMensagemSucesso_quandoUsuarioAdmin() { } // ok
+      void deveRetornarMensagemErro_quandoUsuarioNaoAutorizado() { } // ok
+      void deveRetornarMensagemOkQuandoStatus200() { } // nao-ok
+    }
+  ```
+
+checkstyle.xml
+  ```
+    <module name="com.codeaesthetics.MethodsNamesInTestsCheck" />
+  ```
+
+
 Verbos nos Infinitivo (AR, ER, IR)
   ```
     public class ExampleForVerbsInInfinitive {
