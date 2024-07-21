@@ -52,20 +52,20 @@ public class MethodNameInTestsCheck extends BaseCheck {
         }
     }
 
-    private boolean padraoExisteNaUltimaParte(String methodName) {
-        return padroesFinais.stream().anyMatch(methodName::contains);
-    }
-
-    private boolean padraoExisteNaPrimeiraParte(String methodName) {
-        return padroesIniciais.stream().anyMatch(methodName::contains);
-    }
-
     public void setPadroesIniciais(String[] padroesIniciais) {
         this.padroesIniciais = new HashSet<>(Arrays.asList(padroesIniciais));
     }
 
     public void setPadroesFinais(String[] padroesFinais) {
         this.padroesFinais = new HashSet<>(Arrays.asList(padroesFinais));
+    }
+    
+    private boolean padraoExisteNaUltimaParte(String methodName) {
+        return padroesFinais.stream().anyMatch(methodName::contains);
+    }
+
+    private boolean padraoExisteNaPrimeiraParte(String methodName) {
+        return padroesIniciais.stream().anyMatch(methodName::contains);
     }
 
     private boolean isPrivateModifier(DetailAST node) {

@@ -205,6 +205,11 @@ No `checkstyle.xml` do projeto, adicionar os Checks
     </module>
   ```
 
+0. Para instalar localmente, rodar:
+  ```
+    $ mvn install:install-file -Dfile=code-aesthetics-1.0-SNAPSHOT.jar -DgroupId=com.codeaesthetics -DartifactId=code-aesthetics -Dversion=1.0-SNAPSHOT -Dpackaging=jar
+```
+
 1. No projeto a ser validado, rodar o checkstyle:
   ```
     $ mvn checkstyle:check
