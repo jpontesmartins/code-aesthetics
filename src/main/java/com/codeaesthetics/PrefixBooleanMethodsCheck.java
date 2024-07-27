@@ -13,9 +13,6 @@ public class PrefixBooleanMethodsCheck extends BaseCheck {
     @Override
     public void visitToken(DetailAST node) {
         DetailAST type = node.findFirstToken(TokenTypes.TYPE);
-        if (type == null || type.getFirstChild() == null) {
-            return;
-        }
 
         if (BOOLEAN_TYPE.equals(type.getFirstChild().getText())) {
             String methodName = node.findFirstToken(TokenTypes.IDENT).getText();

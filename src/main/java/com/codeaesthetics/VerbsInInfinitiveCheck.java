@@ -12,11 +12,6 @@ public class VerbsInInfinitiveCheck extends BaseCheck {
 
     @Override
     public void visitToken(DetailAST node) {
-        DetailAST type = node.findFirstToken(TokenTypes.TYPE);
-        if (type == null || type.getFirstChild() == null) {
-            return;
-        }
-        
         String methodName = node.findFirstToken(TokenTypes.IDENT).getText();
 
         String regex = "[a-z]+(ar|er|ir)+[A-Z]([a-z]|[A-Z])*";

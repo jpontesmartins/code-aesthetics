@@ -1,23 +1,21 @@
 package com.codeaesthetics;
 
+import com.puppycrawl.tools.checkstyle.api.*;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class PrefixBooleanMethodsCheckTest {
+public class BaseCheckTest {
 
-    private static final String PATH_TO_EXAMPLES = "src/test/java/com/codeaesthetics/examples/";
     private Checker checker;
     private List<String> messages;
 
@@ -32,7 +30,7 @@ public class PrefixBooleanMethodsCheckTest {
         DefaultConfiguration treeWalkerConfig = new DefaultConfiguration("TreeWalker");
         config.addChild(treeWalkerConfig);
 
-        DefaultConfiguration checkConfig = new DefaultConfiguration(PrefixBooleanMethodsCheck.class.getCanonicalName());
+        DefaultConfiguration checkConfig = new DefaultConfiguration(HungarianNotationCheck.class.getCanonicalName());
         treeWalkerConfig.addChild(checkConfig);
 
         checker.configure(config);
@@ -68,25 +66,18 @@ public class PrefixBooleanMethodsCheckTest {
     }
 
     @Test
-    public void shouldValidateBooleanMethodsWithPrefixIsOrHas() throws Exception {
-        File file = new File(PATH_TO_EXAMPLES + "ExampleForPrefixBooleanMethods.java");
-        checker.process(List.of(file));
-        String expectedMessageCheck = "O metodo 'check' retorna boolean e deve comecar com 'is' ou 'has'.";
-        String expectedMessageVerify = "O metodo 'verify' retorna boolean e deve comecar com 'is' ou 'has'.";
+    public void shouldReturn_implementationOfAbstractCheckMetlhods() throws Exception {
 
-        assertEquals(2, messages.size());
-        assertEquals(expectedMessageCheck, messages.get(0));
-        assertEquals(expectedMessageVerify, messages.get(1));
+        HungarianNotationCheck hungarianNotationCheck = new HungarianNotationCheck();
+
+        assertNotNull(hungarianNotationCheck.getAcceptableTokens());
+        assertNotNull(hungarianNotationCheck.getRequiredTokens());
     }
 
-//     @Test
-//     public void shouldValidateBooleanMethodsWithPrefixIsOrHas2() throws Exception {
-//         File file = new File(PATH_TO_EXAMPLES + "ExampleForPrefixBooleanMethods.java");
-//         checker.process(List.of(file));
-//         String expectedMessageCheck = "O metodo 'check' retorna boolean e deve comecar com 'is' ou 'has'.";
+    @Test
+    public void shouldReturn_throws() throws Exception {
+        BaseCheck baseCheck = new BaseCheck();
+        assertThrows(RuntimeException.class, () -> baseCheck.getDefaultTokens());
+    }
 
-//         assertEquals(1, messages.size());
-//         assertEquals("abcd", messages.get(0));
-//     }
-    
 }

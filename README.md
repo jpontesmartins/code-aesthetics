@@ -150,7 +150,7 @@ No bloco de `<build>`
                 <artifactId>code-aesthetics</artifactId>
                 <version>1.0</version>
                 <scope>system</scope>
-                <systemPath>my-aesthetics-1.0-SNAPSHOT.jar</systemPath>
+                <systemPath>code-aesthetics-1.0-SNAPSHOT.jar</systemPath>
               </dependency>
 
             </dependencies>

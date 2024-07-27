@@ -30,36 +30,33 @@ public class HungarianNotationCheck extends BaseCheck {
     }
 
     private void checkVariableNameForNumbers(DetailAST node, DetailAST type) {
-        if (type == null) return;
-
         if (INT_TYPE.equals(type.getFirstChild().getText())) {
             String variableName = node.findFirstToken(TokenTypes.IDENT).getText();
 
-            if (variableName.startsWith(INT_TYPE) || (variableName.startsWith(I_LOWER_case) 
-                && isSecondLetterUpperCase(variableName))) {
+            if (variableName.startsWith(INT_TYPE) && isFourthLetterUpperCase(variableName) 
+                || ((variableName.startsWith(I_LOWER_case) && isSecondLetterUpperCase(variableName)))) {
                 log(node.getLineNo(), VARIABLE_NAME_PREFIX, variableName);
             }
         }
 
         if (FLOAT_TYPE.equals(type.getFirstChild().getText())) {
             String variableName = node.findFirstToken(TokenTypes.IDENT).getText();
-            if (variableName.startsWith(F_LOWER_CASE) || (variableName.startsWith(F_LOWER_CASE) 
-                && isSecondLetterUpperCase(variableName))) {
+            if (variableName.startsWith(F_LOWER_CASE) 
+                && isSecondLetterUpperCase(variableName)) {
                 log(node.getLineNo(), VARIABLE_NAME_PREFIX, variableName);
             }
         }
         
         if (DOUBLE_TYPE.equals(type.getFirstChild().getText())) {
             String variableName = node.findFirstToken(TokenTypes.IDENT).getText();
-            if (variableName.startsWith(D_LOWER_CASE) || (variableName.startsWith(D_LOWER_CASE) 
-                && isSecondLetterUpperCase(variableName))) {
+            if ((variableName.startsWith(D_LOWER_CASE) && isSecondLetterUpperCase(variableName))) {
                 log(node.getLineNo(), VARIABLE_NAME_PREFIX, variableName);
             }
         }
     }
    
     private void checkVariableNameForString(DetailAST node, DetailAST type) {
-        if (type != null && STRING_TYPE.equals(type.getFirstChild().getText())) {
+        if (STRING_TYPE.equals(type.getFirstChild().getText())) {
 
             DetailAST nodeIdentifier = node.findFirstToken(TokenTypes.IDENT);
             String variableName = nodeIdentifier.getText();
@@ -71,6 +68,10 @@ public class HungarianNotationCheck extends BaseCheck {
 
     private boolean isSecondLetterUpperCase(String variableName) {
         return variableName.length() > 1 && Character.isUpperCase(variableName.charAt(1));
+    }
+
+    private boolean isFourthLetterUpperCase(String variableName) {
+        return variableName.length() > 3 && Character.isUpperCase(variableName.charAt(3));
     }
 
     @Override

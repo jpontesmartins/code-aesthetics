@@ -70,11 +70,19 @@ public class MethodsNamesInTestsCheckTest {
     }
 
     @Test
+    public void shouldCover_classNamesWithoutSuffix() throws Exception {
+        File file = new File(PATH_TO_EXAMPLES + "ExampleSrvc.java");
+        checker.process(List.of(file));
+
+        assertEquals(0, messages.size());
+    }
+
+    @Test
     public void shouldReturn_errorOfDifferentListSizeOfErrors() throws Exception {
         File file = new File(PATH_TO_EXAMPLES + "ExampleForMethodsNamesInTestsTest.java");
         checker.process(List.of(file));
 
-        assertEquals(3, messages.size());
+        assertEquals(5, messages.size());
     }
 
     @Test
@@ -103,4 +111,15 @@ public class MethodsNamesInTestsCheckTest {
         String expectedMessage = "O metodo '%s' deve ter o numero correto de separadores _";
         assertEquals(String.format(expectedMessage, "deveRetornar_mensagemOk_quandoAutorizado_200"), messages.get(2));
     }
+
+    @Test
+    public void shouldReturn_errorOfNoCamelCase() throws Exception {
+        File file = new File(PATH_TO_EXAMPLES + "ExampleForMethodsNamesInTestsTest.java");
+        checker.process(List.of(file));
+        
+        String expectedMessage = "O metodo 'DeveRetornarMensagemOk' DEU ERRO";
+        assertEquals(String.format(expectedMessage), messages.get(3));
+    }
+
 }
+

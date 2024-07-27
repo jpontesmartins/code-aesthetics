@@ -11,6 +11,10 @@ public class MethodNameInTestsCheck extends BaseCheck {
 
     private static final String METHODS_NAMES_PATTERN = "method.name.pattern";
     private static final String METHODS_NAMES_PATTERN_2 = "method.name.pattern.2";
+    private static final String METHODS_NAMES_PATTERN_3 = "method.name.pattern.3";
+
+    
+    //deve ter o numero correto de separadores _
     private static String TEST_SUFFIX = "Test";
 
     private Set<String> padroesIniciais = new HashSet<>();
@@ -32,8 +36,13 @@ public class MethodNameInTestsCheck extends BaseCheck {
                 if (isPrivateModifier(child)) {
                     return;
                 }
-
+                
                 String methodName = child.findFirstToken(TokenTypes.IDENT).getText();
+
+                if (Character.isUpperCase(methodName.charAt(0))) {
+                    log(child.getLineNo(), METHODS_NAMES_PATTERN_3, methodName);
+                }
+
                 // 3. numero correto de separadores 
                 if (methodName.split("_").length > 3) {
                     log(child.getLineNo(), METHODS_NAMES_PATTERN_2, methodName);

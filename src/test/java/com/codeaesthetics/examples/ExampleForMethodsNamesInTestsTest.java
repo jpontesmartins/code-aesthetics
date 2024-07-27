@@ -3,6 +3,9 @@ package com.codeaesthetics.examples;
 import org.junit.jupiter.api.Test;
 
 public class ExampleForMethodsNamesInTestsTest {
+  
+  String URL = "abcd";
+  
   @Test
   public void shouldReturn_mensagemErro_quandoParametroInvalido() { }  // ok
   @Test
@@ -21,4 +24,7 @@ public class ExampleForMethodsNamesInTestsTest {
   void deveRetornarMensagemOkQuandoStatus200() { } // nao ok
   @Test
   void deveRetornar_mensagemOk_quandoAutorizado_200() { } // nao ok
+  @Test
+  void DeveRetornarMensagemOk() { } // nao ok
+
 }

@@ -67,7 +67,16 @@ public class HungarianNotationCheckTest {
     }
 
     @Test
-    public void shouldReturnHungarianNotationForVariables() throws Exception {
+    public void shouldReturn_numbersOfErrors() throws Exception {
+        File file = new File(PATH_TO_EXAMPLES + "ExampleForHungarianNotation.java");
+        checker.process(List.of(file));
+        
+        assertEquals(8, messages.size());
+    }
+
+
+    @Test
+    public void shouldReturn_StringValues() throws Exception {
         File file = new File(PATH_TO_EXAMPLES + "ExampleForHungarianNotation.java");
         checker.process(List.of(file));
         
@@ -75,27 +84,40 @@ public class HungarianNotationCheckTest {
         String expectedMessage_strNome = "Remova a notacao hungara em 'strNome'.";
         String expectedMessage_sNome = "Remova a notacao hungara em 'sNome'.";
 
+        assertEquals(expectedMessage_strNome, messages.get(0));
+        assertEquals(expectedMessage_sNome, messages.get(1));
+
+    }
+
+    @Test
+    public void shouldReturn_intAndIntegerValues_() throws Exception {
+        File file = new File(PATH_TO_EXAMPLES + "ExampleForHungarianNotation.java");
+        checker.process(List.of(file));
+        
         // int
         String expectedMessage_iContador = "Remova a notacao hungara em 'iContador'.";
         String expectedMessage_intContador = "Remova a notacao hungara em 'intContador'.";
         String expectedMessage_iAlgumaCoisa = "Remova a notacao hungara em 'iAlgumaCoisa'.";
         String expectedMessage_intAlgumaCoisa = "Remova a notacao hungara em 'intAlgumaCoisa'.";
 
-        // float e double
-        String expectedMessage_fVar = "Remova a notacao hungara em 'fVar'.";
-        String expectedMessage_dVar = "Remova a notacao hungara em 'dVar'.";
-
-        assertEquals(expectedMessage_strNome, messages.get(0));
-        assertEquals(expectedMessage_sNome, messages.get(1));
-
         assertEquals(expectedMessage_iContador, messages.get(2));
         assertEquals(expectedMessage_intContador, messages.get(3));
         assertEquals(expectedMessage_iAlgumaCoisa, messages.get(4));
         assertEquals(expectedMessage_intAlgumaCoisa, messages.get(5));
 
+    }
+
+    @Test
+    public void shouldReturn_floatAndDoubleValues_() throws Exception {
+        File file = new File(PATH_TO_EXAMPLES + "ExampleForHungarianNotation.java");
+        checker.process(List.of(file));
+        
+        // float e double
+        String expectedMessage_fVar = "Remova a notacao hungara em 'fVar'.";
+        String expectedMessage_dVar = "Remova a notacao hungara em 'dVar'.";
+
         assertEquals(expectedMessage_fVar, messages.get(6));
         assertEquals(expectedMessage_dVar, messages.get(7));
-
     }
 
 }
