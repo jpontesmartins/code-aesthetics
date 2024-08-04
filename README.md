@@ -3,6 +3,19 @@ code-aesthetics
 Dependência para usar junto com o `checkstyle` plugin para validar as nomenclaturas do código
 
 
+https://central.sonatype.com/artifact/io.github.jpontesmartins/code-aesthetics
+
+Para usar, adicionar no POM
+```
+  <dependency>
+      <groupId>io.github.jpontesmartins</groupId>
+      <artifactId>code-aesthetics</artifactId>
+      <version>0.9.0</version>
+  </dependency>
+```
+
+
+
 ## Exemplos
 
 Padrão de nomes de métodos nas classes de teste
